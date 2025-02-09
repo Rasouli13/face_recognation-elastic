@@ -1,0 +1,47 @@
+
+
+curl -k -u "elastic:kx-p2DRTGyi-H*+M1dKM" https://localhost:9200
+curl -k -u "elastic:kx-p2DRTGyi-H*+M1dKM" https://localhost:9200/_cluster/health
+
+
+ -H @{ "content-type" = "application/json"} 
+
+-H 'content-type: application/json;' 
+
+این مشکلو حل  کرد
+.\curl.exe -X PUT "https://localhost:9200/faces" -H "Content-Type: application/json" -d '
+{
+  "mappings": {
+    "properties": {
+      "face_name": {
+        "type": "keyword"
+      },
+      "face_encoding": {
+        "type": "dense_vector",
+        "dims": 128
+      }
+    }
+  }
+}'
+منتها خطای گواهی داد
+مشکل خطا با اضافه کردن -u و یوزر و پس درست شد
+
+
+کار نکرد
+ .\curl.exe -k -u "elastic:kx-p2DRTGyi-H*+M1dKM" -X PUT "https://localhost:9200/faces" -H "Content-Type: application/json" -d'{"mappings":{"properties":{"employee_id":{"type":"integer"},"name":{"type":"text"},"department":{"type":"keyword"},"hire_date":{"type":"date"}}}}'
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+.\curl.exe -k -u "elastic:kx-p2DRTGyi-H*+M1dKM" -X PUT "https://localhost:9200/faces" -H "Content-Type: application/json" --data-binary @mapping.json
+
+
+
+دستور ارسال json
+ .\curl.exe -k -u "elastic:kx-p2DRTGyi-H*+M1dKM" -X PUT "https://localhost:9200/faces" -H "Content-Type: application/json" --data-binary "@C:\Users\mmras\OneDrive\Desktop\facial regognation Elastic\mapping.json"
+پاسخش
+{"acknowledged":true,"shards_acknowledged":true,"index":"faces"}
+
+دریافت json
+ .\curl.exe -k -u "elastic:kx-p2DRTGyi-H*+M1dKM" -X GET "https://localhost:9200/faces"
+
